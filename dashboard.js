@@ -180,7 +180,7 @@ function emotionToEmoji(emotion) {
         "Feliz": "😄", "Tranquilo": "😊", "Enamorado": "😍", "Motivado": "😎",
         "Triste": "😞", "Enojado": "😠", "Ansioso": "😨", "Frustrado": "😩",
         "Indiferente": "😐", "Cansado": "😴", "Pensativo": "🤔", "Confundido": "😶",
-        "Enfermo": "🤒", "Descompuesto": "🤢", "Picaro": "😏", "Incómodo": "😬"
+        "Enfermo": "🤒", "Resacozo": "🤢", "Picaro": "😏", "Incómodo": "😬"
     };
     return map[emotion] || "❓";
 }
