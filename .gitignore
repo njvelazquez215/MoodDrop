@@ -1,0 +1,35 @@
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Node.js (si usás npm/yarn más adelante)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Archivos del entorno JetBrains (IntelliJ/WebStorm/PyCharm/etc.)
+.idea/
+*.iml
+
+# Archivos del sistema operativo
+*.swp
+*.swo
+*.tmp
+
+# Logs
+*.log
+
+# Archivos personales
+.env
+*.local
+
+# Build (si más adelante usás algún sistema de bundling)
+dist/
+build/
+
+# Extensiones temporales comunes
+*.bak
+*.old
+*.orig
