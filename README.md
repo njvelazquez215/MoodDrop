@@ -102,7 +102,7 @@ Podés usarlo, modificarlo y compartirlo libremente, ¡pero estaría buenísimo 
 
 ## ✉️ Contacto
 
-Creado por [@nicojvelazquez](https://github.com/nicojvelazquez)  
+Creado por [@njvelazquez215](https://github.com/njvelazquez215)  
 📫 Podés contactarme a través de [https://cafecito.app/nicojvelazquez](https://cafecito.app/nicojvelazquez) o abrir un issue en el repo.
 
 ---
