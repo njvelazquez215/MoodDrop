@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mis emociones</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="lib/chart.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <h1 class="title">Mis emociones</h1>
+
+    <section class="dashboard-section">
+        <h2>🗓 Hoy</h2>
+        <ul id="today-log" class="log-list"></ul>
+    </section>
+
+    <section class="dashboard-section">
+        <h2>📊 Emociones más frecuentes (últimos 7 días)</h2>
+        <canvas id="weeklyChart" height="180"></canvas>
+    </section>
+
+    <section class="dashboard-section">
+        <h2>📈 Tendencia emocional</h2>
+        <canvas id="trendChart" height="180"></canvas>
+    </section>
+
+    <section class="dashboard-section">
+        <h2>🌟 Promedio emocional de hoy</h2>
+        <div id="averageEmoji" class="emoji-large">❓</div>
+    </section>
+
+    <a href="popup.html" class="link back-button">← Volver a registrar emociones</a>
+
+    <div class="donate-box">
+        <p>💡 ¿Te gustaría que esta extensión siga creciendo?</p>
+        <a href="https://cafecito.app/nicojvelazquez" target="_blank" class="link donate-btn">
+            ☕ Invitame un cafecito y dejá tus sugerencias
+        </a>
+    </div>
+</div>
+
+<script src="dashboard.js"></script>
+</body>
+</html>
