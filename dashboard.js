@@ -7,8 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const last7daysEntries = moodLog.filter(entry => {
             const date = new Date(entry.timestamp);
             const now = new Date();
-            const diff = (now - date) / (1000 * 60 * 60 * 24);
-            return diff < 7;
+            return (now - date) / (1000 * 60 * 60 * 24) < 7;
         });
 
         renderTodayLog(todayEntries);
@@ -17,6 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
         renderAverageEmotion(todayEntries);
     });
 });
+
+// === RENDER FUNCTIONS ===
 
 function renderTodayLog(entries) {
     const list = document.getElementById('today-log');
@@ -31,9 +32,9 @@ function renderTodayLog(entries) {
         const time = new Date(entry.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
         const li = document.createElement('li');
         li.innerHTML = `
-      <span>${entry.emotion} (${time})</span>
-      <button class="delete-btn" data-index="${index}" title="Eliminar">🗑️</button>
-    `;
+            <span>${entry.emotion} (${time})</span>
+            <button class="delete-btn" data-index="${index}" title="Eliminar">🗑️</button>
+        `;
         list.appendChild(li);
     });
 
@@ -55,42 +56,31 @@ function renderTodayLog(entries) {
 
 function renderWeeklyChart(entries) {
     const container = document.getElementById('weeklyChart').parentElement;
-
-    if (entries.length === 0) {
-        container.innerHTML += '<p style="color: #999; font-size: 13px;">Sin datos suficientes para mostrar.</p>';
-        return;
-    }
+    if (entries.length === 0) return addNoDataMessage(container);
 
     const counts = {};
     entries.forEach(entry => {
         counts[entry.emotion] = (counts[entry.emotion] || 0) + 1;
     });
 
-    const labels = Object.keys(counts);
-    const data = Object.values(counts);
-
     const ctx = document.getElementById('weeklyChart').getContext('2d');
     new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: labels,
+            labels: Object.keys(counts),
             datasets: [{
                 label: 'Frecuencia',
-                data: data,
+                data: Object.values(counts),
                 backgroundColor: '#4dabf7',
                 borderRadius: 5
             }]
         },
         options: {
-            plugins: {
-                legend: { display: false }
-            },
+            plugins: { legend: { display: false } },
             scales: {
                 y: {
                     beginAtZero: true,
-                    ticks: {
-                        stepSize: 1
-                    }
+                    ticks: { stepSize: 1 }
                 }
             }
         }
@@ -99,11 +89,7 @@ function renderWeeklyChart(entries) {
 
 function renderTrendChart(entries) {
     const container = document.getElementById('trendChart').parentElement;
-
-    if (entries.length === 0) {
-        container.innerHTML += '<p style="color: #999; font-size: 13px;">Sin datos suficientes para mostrar.</p>';
-        return;
-    }
+    if (entries.length === 0) return addNoDataMessage(container);
 
     const dayMap = {};
     entries.forEach(entry => {
@@ -113,10 +99,7 @@ function renderTrendChart(entries) {
     });
 
     const sortedDates = Object.keys(dayMap).sort();
-    if (sortedDates.length === 0) {
-        container.innerHTML += '<p style="color: #999; font-size: 13px;">Sin datos suficientes para mostrar.</p>';
-        return;
-    }
+    if (sortedDates.length === 0) return addNoDataMessage(container);
 
     const labels = [];
     const data = [];
@@ -152,10 +135,7 @@ function renderTrendChart(entries) {
                 legend: { display: false },
                 tooltip: {
                     callbacks: {
-                        label: function (context) {
-                            const val = context.raw;
-                            return numberToEmotion[val];
-                        }
+                        label: (context) => numberToEmotion[context.raw]
                     }
                 }
             },
@@ -163,9 +143,7 @@ function renderTrendChart(entries) {
                 y: {
                     ticks: {
                         stepSize: 1,
-                        callback: function (val) {
-                            return numberToEmotion[val] || '';
-                        }
+                        callback: (val) => numberToEmotion[val] || ''
                     }
                 }
             }
@@ -185,16 +163,16 @@ function renderAverageEmotion(entries) {
         counts[entry.emotion] = (counts[entry.emotion] || 0) + 1;
     });
 
-    const most = Object.entries(counts).reduce((a, b) => (a[1] > b[1] ? a : b));
-    const emoji = emotionToEmoji(most[0]);
-
-    el.textContent = emoji;
+    const [mostFrequentEmotion] = Object.entries(counts).reduce((a, b) => (a[1] > b[1] ? a : b));
+    el.textContent = emotionToEmoji(mostFrequentEmotion);
 }
 
+// === UTILS ===
+
 function mostFrequent(arr) {
-    return arr.sort((a,b) =>
-        arr.filter(v => v === a).length - arr.filter(v => v === b).length
-    ).pop();
+    const freq = {};
+    arr.forEach(item => freq[item] = (freq[item] || 0) + 1);
+    return Object.entries(freq).reduce((a, b) => a[1] > b[1] ? a : b)[0];
 }
 
 function emotionToEmoji(emotion) {
@@ -205,4 +183,8 @@ function emotionToEmoji(emotion) {
         "Enfermo": "🤒", "Descompuesto": "🤢", "Picaro": "😏", "Incómodo": "😬"
     };
     return map[emotion] || "❓";
+}
+
+function addNoDataMessage(container) {
+    container.innerHTML += '<p style="color: #999; font-size: 13px;">Sin datos suficientes para mostrar.</p>';
 }

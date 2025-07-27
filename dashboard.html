@@ -2,42 +2,96 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Mis emociones</title>
+    <title>MoodDrop - Dashboard</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <script src="lib/chart.min.js"></script>
 </head>
 <body>
-<div class="container">
-    <h1 class="title">Mis emociones</h1>
+<div class="container container--dashboard">
+    <header class="header">
+        <div class="logo">
+            <span class="logo-icon">🎭</span>
+            <h1 class="title">MoodDrop</h1>
+        </div>
+        <p class="subtitle">Tu registro emocional</p>
+    </header>
 
-    <section class="dashboard-section">
-        <h2>🗓 Hoy</h2>
-        <ul id="today-log" class="log-list"></ul>
-    </section>
+    <main class="dashboard">
+        <!-- Promedio emocional de hoy -->
+        <section class="card card--highlight">
+            <div class="card__header">
+                <h2 class="card__title">
+                    <span class="card__icon">🌟</span>
+                    Estado de hoy
+                </h2>
+            </div>
+            <div class="card__content">
+                <div id="averageEmoji" class="emotion-display">❓</div>
+                <p class="emotion-display__subtitle">Emoción dominante</p>
+            </div>
+        </section>
 
-    <section class="dashboard-section">
-        <h2>📊 Emociones más frecuentes (últimos 7 días)</h2>
-        <canvas id="weeklyChart" height="180"></canvas>
-    </section>
+        <!-- Registro de hoy -->
+        <section class="card">
+            <div class="card__header">
+                <h2 class="card__title">
+                    <span class="card__icon">🗓</span>
+                    Registro de hoy
+                </h2>
+            </div>
+            <div class="card__content">
+                <ul id="today-log" class="log-list"></ul>
+            </div>
+        </section>
 
-    <section class="dashboard-section">
-        <h2>📈 Tendencia emocional</h2>
-        <canvas id="trendChart" height="180"></canvas>
-    </section>
+        <!-- Gráfico semanal -->
+        <section class="card">
+            <div class="card__header">
+                <h2 class="card__title">
+                    <span class="card__icon">📊</span>
+                    Últimos 7 días
+                </h2>
+            </div>
+            <div class="card__content">
+                <div class="chart-container">
+                    <canvas id="weeklyChart"></canvas>
+                </div>
+            </div>
+        </section>
 
-    <section class="dashboard-section">
-        <h2>🌟 Promedio emocional de hoy</h2>
-        <div id="averageEmoji" class="emoji-large">❓</div>
-    </section>
+        <!-- Tendencia emocional -->
+        <section class="card">
+            <div class="card__header">
+                <h2 class="card__title">
+                    <span class="card__icon">📈</span>
+                    Tendencia emocional
+                </h2>
+            </div>
+            <div class="card__content">
+                <div class="chart-container">
+                    <canvas id="trendChart"></canvas>
+                </div>
+            </div>
+        </section>
+    </main>
 
-    <a href="popup.html" class="link back-button">← Volver a registrar emociones</a>
-
-    <div class="donate-box">
-        <p>💡 ¿Te gustaría que esta extensión siga creciendo?</p>
-        <a href="https://cafecito.app/nicojvelazquez" target="_blank" class="link donate-btn">
-            ☕ Invitame un cafecito y dejá tus sugerencias
+    <footer class="footer footer--dashboard">
+        <a href="popup.html" class="btn btn--secondary">
+            <span class="btn__icon">←</span>
+            <span class="btn__text">Registrar emoción</span>
         </a>
-    </div>
+
+        <div class="support-section">
+            <p class="support-section__text">¿Te gusta MoodDrop?</p>
+            <a href="https://cafecito.app/nicojvelazquez" target="_blank" class="btn btn--support">
+                <span class="btn__icon">☕</span>
+                <span class="btn__text">Invitame un cafecito</span>
+            </a>
+        </div>
+    </footer>
 </div>
 
 <script src="dashboard.js"></script>

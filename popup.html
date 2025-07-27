@@ -2,36 +2,109 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>¿Cómo te sentís?</title>
+    <title>MoodDrop - ¿Cómo te sentís?</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="container">
-    <h1 class="title">¿Cómo te sentís?</h1>
+    <header class="header">
+        <div class="logo">
+            <span class="logo-icon">🎭</span>
+            <h1 class="title">MoodDrop</h1>
+        </div>
+        <p class="subtitle">¿Cómo te sentís ahora?</p>
+    </header>
 
-    <div id="emotion-grid" class="grid">
-        <!-- Emociones (emoji + nombre) -->
-        <button class="emotion" data-emotion="Feliz">😄<span>Feliz</span></button>
-        <button class="emotion" data-emotion="Tranquilo">😊<span>Tranquilo</span></button>
-        <button class="emotion" data-emotion="Enamorado">😍<span>Enamorado</span></button>
-        <button class="emotion" data-emotion="Motivado">😎<span>Motivado</span></button>
-        <button class="emotion" data-emotion="Triste">😞<span>Triste</span></button>
-        <button class="emotion" data-emotion="Enojado">😠<span>Enojado</span></button>
-        <button class="emotion" data-emotion="Ansioso">😨<span>Ansioso</span></button>
-        <button class="emotion" data-emotion="Frustrado">😩<span>Frustrado</span></button>
-        <button class="emotion" data-emotion="Indiferente">😐<span>Indiferente</span></button>
-        <button class="emotion" data-emotion="Cansado">😴<span>Cansado</span></button>
-        <button class="emotion" data-emotion="Pensativo">🤔<span>Pensativo</span></button>
-        <button class="emotion" data-emotion="Confundido">😶<span>Confundido</span></button>
-        <button class="emotion" data-emotion="Enfermo">🤒<span>Enfermo</span></button>
-        <button class="emotion" data-emotion="Descompuesto">🤢<span>Descompuesto</span></button>
-        <button class="emotion" data-emotion="Picaro">😏<span>Pícaro</span></button>
-        <button class="emotion" data-emotion="Incómodo">😬<span>Incómodo</span></button>
-    </div>
+    <main class="main-content">
+        <div id="emotion-grid" class="emotion-grid">
+            <!-- Emociones positivas -->
+            <button class="emotion emotion--positive" data-emotion="Feliz">
+                <span class="emotion__emoji">😄</span>
+                <span class="emotion__label">Feliz</span>
+            </button>
+            <button class="emotion emotion--positive" data-emotion="Tranquilo">
+                <span class="emotion__emoji">😊</span>
+                <span class="emotion__label">Tranquilo</span>
+            </button>
+            <button class="emotion emotion--positive" data-emotion="Enamorado">
+                <span class="emotion__emoji">😍</span>
+                <span class="emotion__label">Enamorado</span>
+            </button>
+            <button class="emotion emotion--positive" data-emotion="Motivado">
+                <span class="emotion__emoji">😎</span>
+                <span class="emotion__label">Motivado</span>
+            </button>
 
-    <div id="confirmation" class="hidden">✅ Emoción registrada</div>
+            <!-- Emociones negativas -->
+            <button class="emotion emotion--negative" data-emotion="Triste">
+                <span class="emotion__emoji">😞</span>
+                <span class="emotion__label">Triste</span>
+            </button>
+            <button class="emotion emotion--negative" data-emotion="Enojado">
+                <span class="emotion__emoji">😠</span>
+                <span class="emotion__label">Enojado</span>
+            </button>
+            <button class="emotion emotion--negative" data-emotion="Ansioso">
+                <span class="emotion__emoji">😨</span>
+                <span class="emotion__label">Ansioso</span>
+            </button>
+            <button class="emotion emotion--negative" data-emotion="Frustrado">
+                <span class="emotion__emoji">😩</span>
+                <span class="emotion__label">Frustrado</span>
+            </button>
 
-    <a href="dashboard.html" class="link">📊 Ver mis registros!</a>
+            <!-- Emociones neutras -->
+            <button class="emotion emotion--neutral" data-emotion="Indiferente">
+                <span class="emotion__emoji">😐</span>
+                <span class="emotion__label">Indiferente</span>
+            </button>
+            <button class="emotion emotion--neutral" data-emotion="Cansado">
+                <span class="emotion__emoji">😴</span>
+                <span class="emotion__label">Cansado</span>
+            </button>
+            <button class="emotion emotion--neutral" data-emotion="Pensativo">
+                <span class="emotion__emoji">🤔</span>
+                <span class="emotion__label">Pensativo</span>
+            </button>
+            <button class="emotion emotion--neutral" data-emotion="Confundido">
+                <span class="emotion__emoji">😶</span>
+                <span class="emotion__label">Confundido</span>
+            </button>
+
+            <!-- Emociones físicas -->
+            <button class="emotion emotion--physical" data-emotion="Enfermo">
+                <span class="emotion__emoji">🤒</span>
+                <span class="emotion__label">Enfermo</span>
+            </button>
+            <button class="emotion emotion--physical" data-emotion="Descompuesto">
+                <span class="emotion__emoji">🤢</span>
+                <span class="emotion__label">Descompuesto</span>
+            </button>
+            <button class="emotion emotion--playful" data-emotion="Picaro">
+                <span class="emotion__emoji">😏</span>
+                <span class="emotion__label">Pícaro</span>
+            </button>
+            <button class="emotion emotion--neutral" data-emotion="Incómodo">
+                <span class="emotion__emoji">😬</span>
+                <span class="emotion__label">Incómodo</span>
+            </button>
+        </div>
+
+        <div id="confirmation" class="confirmation hidden">
+            <div class="confirmation__icon">✨</div>
+            <div class="confirmation__text">Emoción registrada</div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <a href="dashboard.html" class="btn btn--primary">
+            <span class="btn__icon">📊</span>
+            <span class="btn__text">Ver mis registros</span>
+        </a>
+    </footer>
 </div>
 
 <script src="popup.js"></script>
